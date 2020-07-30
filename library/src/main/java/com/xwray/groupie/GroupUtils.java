@@ -2,7 +2,9 @@ package com.xwray.groupie;
 
 import androidx.annotation.NonNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 class GroupUtils {
     @NonNull
@@ -27,5 +29,17 @@ class GroupUtils {
             size += group.getItemCount();
         }
         return size;
+    }
+
+    static List<Item<?>> flattenItems(Collection<? extends Group> groups) {
+        List<Item<?>> res = new ArrayList<>();
+
+        for (Group group : groups) {
+            for (int i = 0; i < group.getItemCount(); i++) {
+                res.add(group.getItem(i));
+            }
+        }
+
+        return res;
     }
 }
